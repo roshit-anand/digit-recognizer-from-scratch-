@@ -11,7 +11,7 @@ train_images=train_images/255.0
 test_images=test_images/255.0
 loss_fn = tf.keras.losses.SparseCategoricalCrossentropy()
 model=keras.Sequential([
-                        keras.layers.Flatten(input_shape=(28, 28)),
+                        keras.layers.Flatten(),
                         keras.layers.Dense(600,activation="relu"),
                         keras.layers.Dense(128,activation="relu"),
                         keras.layers.Dense(512,activation="relu"),
@@ -25,3 +25,5 @@ model.fit(train_images,train_labels,epochs=10)
 test_loss,test_acc=model.evaluate(test_images,test_labels)
 
 print(test_acc)
+
+# 98.11% accuracy
