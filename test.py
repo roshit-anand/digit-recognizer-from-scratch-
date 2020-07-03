@@ -53,12 +53,17 @@ def accuracy(X,Y):
 
 def optimize(w,X,Y,learning_rate,num_iteration,costs):
 
-    for j in range(num_iteration):
+    for i in range(num_iteration):
         cost,grad=costp(np.dot(w.T,X),X,Y,w)
         if i%50==0:
             costs.append(-cost)
+            print(-cost)
         w=w-learning_rate*grad
-        
+
+    plt.plot(costs)
+    plt.show()
+    return w,costs,grad,cost,i
+
 w,costs,grad,cost,i=optimize(w,train_set_x_flatten,train_Y1,learning_rate,num_iteration,costs)
 pred1,prob1=prob_and_pred(train_set_x_flatten,w)
 pred2,prob2=prob_and_pred(test_set_x_flatten,w)
