@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow import keras
 import matplotlib.pyplot as plt
 
-data=keras.datasets.fashion_mnist
+data=keras.datasets.mnist
 
 (train_images,train_labels),(test_images,test_labels)=data.load_data()
 
@@ -25,5 +25,3 @@ model.fit(train_images,train_labels,epochs=10)
 test_loss,test_acc=model.evaluate(test_images,test_labels)
 
 print(test_acc)
-
-# 88.59% accuracy
