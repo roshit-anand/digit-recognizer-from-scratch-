@@ -11,13 +11,11 @@ test_Y= idx2numpy.convert_from_file('data/t10k-labels-idx1-ubyte')
 test_Y_org=test_Y.reshape(test_Y.shape[0],1)
 test_set_X = test_X.reshape(test_X.shape[0],-1).T
 #datasets for testing
-train_set_Y=train_Y.reshape(train_Y.shape[0],1)[:2000,:]
-test_set_Y=train_Y.reshape(train_Y.shape[0],1)[2000:2500,:]
+train_set_Y=train_Y.reshape(train_Y.shape[0],1)
+test_set_Y=train_Y.reshape(train_Y.shape[0],1)
 
-test_set_x_flatten = train_X.reshape(train_X.shape[0],-1).T[:,2000:2500]
-train_set_x_flatten = train_X.reshape(train_X.shape[0],-1).T[:,:2000]
-
-print(train_set_x_flatten.shape,train_Y.shape)
+test_set_x_flatten = train_X.reshape(train_X.shape[0],-1).T
+train_set_x_flatten = train_X.reshape(train_X.shape[0],-1).T
 def onehotit(z):
     s=np.zeros((z.shape[0],int(np.amax(z)+1)))
     for i in range(z.shape[0]):
@@ -53,28 +51,15 @@ def accuracy(X,Y):
     s=np.sum(X.T==Y)/X.shape[1]
     return s*100
 
-def optimize(w,X,Y,learning_rate,num_iteration,t,costs):
-    cost,grad=costp(np.dot(w.T,X),X,Y,w)
-    i=0
-    for j in range(50):
-        cost,grad=costp(np.dot(w.T,X),X,Y,w)
-        if i%50==0:
-            costs.append(-cost)
-        w=w-learning_rate*grad
-        i+=1
-    while cost<=-t:
-        if i==50:
-            print("in loop")
-        cost,grad=costp(np.dot(w.T,X),X,Y,w)
-        if i%50==0:
-            costs.append(-cost)
-        w=w-learning_rate*grad
-        i+=1
-    plt.plot(costs)
-    plt.show()
-    return w,costs,grad,cost,i
+def optimize(w,X,Y,learning_rate,num_iteration,costs):
 
-w,costs,grad,cost,i=optimize(w,train_set_x_flatten,train_Y1,learning_rate,num_iteration,t,costs)
+    for j in range(num_iteration):
+        cost,grad=costp(np.dot(w.T,X),X,Y,w)
+        if i%50==0:
+            costs.append(-cost)
+        w=w-learning_rate*grad
+        
+w,costs,grad,cost,i=optimize(w,train_set_x_flatten,train_Y1,learning_rate,num_iteration,costs)
 pred1,prob1=prob_and_pred(train_set_x_flatten,w)
 pred2,prob2=prob_and_pred(test_set_x_flatten,w)
 print(accuracy(pred1,train_set_Y))
