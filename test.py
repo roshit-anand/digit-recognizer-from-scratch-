@@ -69,4 +69,4 @@ pred1,prob1=prob_and_pred(train_set_x_flatten,w)
 pred2,prob2=prob_and_pred(test_set_x_flatten,w)
 print(accuracy(pred1,train_set_Y))
 print(accuracy(pred2,test_set_Y))
-    # 82% accuracy
+    # 92% accuracy
