@@ -43,7 +43,7 @@ def prob_and_pred(X,w):
 
 
 learning_rate=1e-5
-num_iteration=5000
+num_iteration=1000
 train_Y1=onehotit(train_set_Y)
 w=np.zeros((test_set_x_flatten.shape[0],10))
 costs=[]
