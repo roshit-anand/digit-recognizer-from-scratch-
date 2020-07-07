@@ -12,9 +12,8 @@ test_images=test_images/255.0
 loss_fn = tf.keras.losses.SparseCategoricalCrossentropy()
 model=keras.Sequential([
                         keras.layers.Flatten(),
-                        keras.layers.Dense(600,activation="relu"),
-                        keras.layers.Dense(128,activation="relu"),
                         keras.layers.Dense(512,activation="relu"),
+                        keras.layers.Dense(128,activation="relu"),
                         keras.layers.Dense(10,activation="softmax")
 ])
 
