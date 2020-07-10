@@ -9,6 +9,8 @@ There are 2 models :
 LIBRARIES NEEDED 
   
   1.idx2numpy(for reading the dataset manually, can be ignored and keras can be used to import dataset)
+  
   2.numpy
+  
   3.matplotlib 
  
